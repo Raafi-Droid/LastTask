@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LastProjekWebGIS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+ 
+    <!-- Leaflet CSS -->
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+        
+            <!-- Plugin Tambahan -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easybutton.css">
+            <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leafletfullscreen/v1.0.1/leaflet.fullscreen.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css">
+            <link rel="stylesheet" href="https://balladaniel.github.io/leaflet-dataclassification/leafletdataclassification.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css" />
+        
+            <!-- JavaScript -->
+            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+            <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+            <script src="https://api.mapbox.com/mapbox.js/plugins/leafletfullscreen/v1.0.1/Leaflet.fullscreen.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+            <script src="https://balladaniel.github.io/leaflet-dataclassification/leafletdataclassification.js"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="#" class="navbar-brand">
+                <img src="aset/pemda-garut-seeklogo.png" alt="Kabupaten Garut" class="logo-garut">
+                <img src="aset/download.jpeg" alt="Saig" class="logo-saig">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home-section">Home</a></li>
+                <li><a href="#peta-section">Peta</a></li>
+                <li><a href="#data-section">Data</a></li>
+                <li><a href="#author-section">Author</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+        </div>
+        <div class="navbar-right">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Pencarian">
+            </div>
+            <div class="country-selector">
+                <img src="aset/indonesia.png" alt="Indonesia Flag" class="flag-icon">
+                <span><i class="fas fa-caret-down"></i></span>
+            </div>
+            <a href="https://shopee.co.id/?gad_source=1&gad_campaignid=1558961180&gbraid=0AAAAADPpU81JKqGy9FrkMBnvZPfp8mj6y&gclid=CjwKCAjw6ZTCBhBOEiwAqfwJd8ec_NawUzzb45W6Zbh6_HMC7xH2Z19ozPySVK5P2KPSFZI-tFDkBhoC0t4QAvD_BwE" class="navbar-cart">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+    </nav>
+    <section class="home-section">
+        <div class="breadcrumb">
+            <span>Dunia</span> / <span>Indonesia</span> / <span>Jawa Barat</span> / <span>Garut</span>
+        </div>
+
+        <div class="country-header">
+            <img src="aset/pemda-garut-seeklogo.png" alt="Indonesia Flag" class="country-flag">
+            <h1>WebGIS Kawasan Rawan Bencana (KRB) Gunung Api Guntur</h1>
+        </div>
+
+        <p class="country-description">
+            Kawasan Rawan Bencana Gunung Api Guntur terbagi menjadi tiga zona utama berdasarkan tingkat risiko. KRB III merupakan zona dengan risiko tinggi terhadap awan panas, aliran lava, bom vulkanik, dan gas beracun, sehingga tidak disarankan untuk hunian tetap. KRB II berpotensi terdampak oleh aliran lahar, hujan abu lebat, serta lontaran material vulkanik yang bisa membahayakan wilayah sekitar. Sementara itu, KRB I memiliki risiko lebih ringan, terutama dari hujan abu, aliran lahar, dan kemungkinan perluasan dampak jika terjadi letusan besar. Gunung Guntur yang terletak di Garut termasuk gunung aktif, sehingga pemantauan terus dilakukan guna mengantisipasi potensi bencana.
+
+        </p>
+
+        <div class="data-attribution">
+            <div class="data-attribution-header">
+                <span>Powered By</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="data-attribution-content">
+                <img src="aset/esdm.png" alt="IQAir Logo" class="iqair-mini-logo">
+                <img src="aset/visualcode.png" alt="IQAir Logo" class="iqair-mini-logo">
+                <img src="aset/arcpro.jpeg" alt="IQAir Logo" class="iqair-mini-logo">
+                <span>Dibuat Untuk Memenuhi Tugas Akhir Matakuliah WebGIS</span>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div id="map-section">
+            <div id="map">
+            <!-- akan muncul peta disini -->
+            </div>
+        </div>
+    </section>
+    <section class="compact-explanation-section">   
+        <div class="explanation-container">
+            <div class="explanation-row">
+                <div class="explanation-color explanation-kelas1"></div>
+                <div class="explanation-details">
+                    <h4>Kelas 1 (Risiko Rendah)</h4>
+                    <p>Area dengan tingkat kerawanan bencana gunung api yang paling rendah. Dampak yang mungkin terjadi umumnya berupa hujan abu tipis atau perluasan aliran lahar jika letusan sangat besar.</p>
+                </div>
+            </div>
+            <div class="explanation-row">
+                <div class="explanation-color explanation-kelas2"></div>
+                <div class="explanation-details">
+                    <h4>Kelas 2 (Risiko Sedang)</h4>
+                    <p>Area dengan risiko sedang, berpotensi terdampak oleh aliran lahar, hujan abu lebat, dan lontaran material vulkanik. Area ini mungkin memerlukan evakuasi saat status gunung meningkat.</p>
+                </div>
+            </div>
+            <div class="explanation-row">
+                <div class="explanation-color explanation-kelas3"></div>
+                <div class="explanation-details">
+                    <h4>Kelas 3 (Risiko Tinggi)</h4>
+                    <p>Area dengan tingkat kerawanan bencana paling tinggi. Berpotensi terdampak langsung oleh awan panas, aliran lahar, bom vulkanik, dan gas beracun. Area ini tidak direkomendasikan untuk hunian tetap dan memerlukan evakuasi segera saat terjadi aktivitas gunung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+        <div class="page-wrapper">
+        
+            <div class="cards-container">
+                <div class="info-card">
+                    <img src="aset/krb1.jpeg" alt="Kota dengan polusi udara" class="info-card-image">
+                    <div class="info-card-content">
+                        <a href="#" class="info-card-link">
+                            <span class="info-card-icon">Kerawanan Bencana I</span>
+                            <h3 class="info-card-title">Wilayah yang berpotensi terkena lahar, hujan abu, dan air dengan keasaman tinggi. Jika letusan membesar, zona ini bisa terdampak perluasan awan panas dan lontaran material vulkanik.
+                        </a>
+                    </div>
+                </div>
+        
+                <div class="info-card">
+                    <img src="aset/krbii.jpeg" alt="Pemandangan dengan asap api di kejauhan" class="info-card-image">
+                    <div class="info-card-content">
+                        <a href="#" class="info-card-link">
+                            <span class="info-card-icon">Kerawanan Bencana II</span>
+                            <h3 class="info-card-title">Potensi terdampak aliran lahar, hujan abu lebat, dan lontaran material vulkanik
+                        </a>
+                    </div>
+                </div>
+        
+                <div class="info-card">
+                    <img src="aset/krbiii.jpeg" alt="Kebakaran hutan yang besar" class="info-card-image">
+                    <div class="info-card-content">
+                        <a href="#" class="info-card-link">
+                            <span class="info-card-icon">Kerawanan Bencanana III</span>
+                            <h3 class="info-card-title">Berisiko tinggi terkena awan panas, lava, bom vulkanik, dan gas beracun.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Tambahkan CSS di <head> atau sebelum grafik -->
+    <style>
+        .grafik-container {
+          max-width: 1250px;
+          margin: 40px auto;
+          padding: 20px;
+          background-color: #ffffff;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+      </style>
+      
+      <!-- Bungkus grafik dalam kontainer -->
+      <div class="grafik-container">
+        <canvas id="grafikGunungGuntur" width="1600" height="400"></canvas>
+      </div>
+      
+      <!-- Script grafik (Chart.js) tetap seperti sebelumnya -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        const ctx = document.getElementById('grafikGunungGuntur').getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: [
+              "1690", "1770", "1777", "1780", "1803", "1807", "1809", "1815", "1816", "1825",
+              "1829", "1832", "1833", "1834", "1840", "1841", "1843", "1847", "1885", "1887"
+            ],
+            datasets: [{
+              label: 'Jumlah Letusan',
+              data: [
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 2, 1, 1, 1, 1, 2, 1, 1, 1
+              ],
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 2,
+              fill: true,
+              tension: 0.3,
+              pointRadius: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: ctx => ` Letusan: ${ctx.parsed.y}`
+                }
+              },
+              title: {
+                display: true,
+                text: 'Aktivitas Letusan Gunung Guntur (1690–1887)',
+                font: { size: 16 }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: { display: true, text: 'Jumlah Letusan' }
+              },
+              x: {
+                title: { display: true, text: 'Tahun' }
+              }
+            }
+          }
+        });
+      </script>
+      <section class="download-section">
+        <div class="download-container">
+            <h2>Unduh Data Kami</h2>
+            <p>Dapatkan akses ke data lengkap kami dalam berbagai format. Pilih opsi unduhan di bawah ini:</p>
+            <div class="download-options">
+                <a href="/aset/pvmbg-ga-krb-raster-GUN.jpg" class="download-button image-button" download>
+                    <i class="fas fa-image"></i> Unduh Peta (.PNG)
+                </a>
+                <a href="/aset/Kawasan+Rawan.geojson" class="download-button shp-button" download>
+                    <i class="fas fa-map-marked-alt"></i> Unduh Data (.SHP)
+                </a>
+                <a href="/aset/pvmbg-ga-krb-vector-GUN.zip" class="download-button pdf-button" download>
+                    <i class="fas fa-file-pdf"></i>
+                    Unduh Laporan (.PDF)
+                </a>
+            </div>
+            <p class="download-note">Data terakhir diperbarui: 04 Juni 2025</p>
+        </div>
+    </section>
+          <section class="author-section">
+              <div class="author-container">
+                  <div class="author-info">
+                      <img src="aset/WhatsApp Image 2025-06-04 at 18.41.52_430cc3ea.jpg" alt="Foto Penulis" class="author-avatar">
+                      <h3>Muhamad Raafi Awaludin Jamil</h3>
+                      <p>Pengembang Web & GIS Enthusiast</p>
+                      <div class="author-bio">
+                          <p>Halo! Saya adalah seorang pengembang web yang bersemangat dalam menciptakan pengalaman digital yang menarik dan fungsional. Dengan fokus pada detail dan kode yang bersih, saya berusaha untuk memberikan solusi terbaik.</p>
+                      </div>
+                  </div>
+              </div>
+          </section>
+      
+          <footer class="main-footer">
+              <div class="footer-content">
+                  <div class="footer-left">
+                      <span class="flag-icon">🇮🇩</span>
+                      <span class="country-name">Indonesia</span>
+                      <span class="metric-info">Sains Informasi Geografi/23</span>
+                  </div>
+                  <div class="footer-center">
+                      <a href="#" class="footer-link">Ketentuan Penggunaan</a>
+                      <span class="policy-toggle">
+                          <input type="checkbox" id="policy-checkbox">
+                          <label for="policy-checkbox" class="toggle-label"></label>
+                      </span>
+                      <a href="#" class="footer-link">Kebijakan Privasi</a>
+                  </div>
+                  <div class="footer-right">
+                      <p>&copy; 2025. WebGIS - SaIG 4A</p>
+                  </div>
+              </div>
+              <div class="footer-social">
+                  <a href="https://www.facebook.com/?locale=id_ID" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                  <a href="http://x.com/" class="social-icon"><i class="fab fa-twitter"></i></a>
+                  <a href="https://www.instagram.com/" class="social-icon"><i class="fab fa-instagram"></i></a>
+                  <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" class="social-icon"><i class="fas fa-envelope"></i></a>
+                  <a href="https://saig.upi.edu/" class="social-icon"><i class="fas fa-globe"></i></a>
+              </div>
+          </footer>
+          <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+          <script src="script.js"></script>
+</body>
+</html>
